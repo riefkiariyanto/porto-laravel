@@ -119,6 +119,21 @@ export default function Login({ status, canResetPassword }) {
                                 Log in
                             </PrimaryButton>
                         </div>
+                        <div>
+                            <a
+                                href="/auth/google"
+                                className="flex items-center justify-center w-full gap-2 rounded-md bg-white border border-gray-300 text-gray-700 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-700 py-2 transition"
+                            >
+                                <img
+                                    src="https://www.svgrepo.com/show/475656/google-color.svg"
+                                    alt="Google"
+                                    className="w-5 h-5"
+                                />
+                                <span className="text-sm font-medium">
+                                    Continue with Google
+                                </span>
+                            </a>
+                        </div>
                     </form>
                 </div>
 

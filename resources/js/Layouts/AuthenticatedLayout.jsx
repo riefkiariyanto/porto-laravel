@@ -35,7 +35,7 @@ export default function AuthenticatedLayout({ header, children }) {
 
             {/* Sidebar */}
             <aside
-                className={`z-40 lg:z-auto fixed lg:static top-0 left-0 h-full lg:h-screen bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-4 w-[85vw] sm:w-48 lg:w-[14rem] lg:mr-6 transition-transform duration-300 ease-in-out
+                className={`z-40 lg:z-20 fixed lg:static top-0 left-0 h-full lg:h-screen bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-4 w-[50vw] sm:w-48 lg:w-[14rem] lg:mr-1 transition-transform duration-300 ease-in-out
     ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"} lg:translate-x-0`}
             >
                 <div className="flex flex-col justify-between h-full">
