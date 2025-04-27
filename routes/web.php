@@ -5,6 +5,8 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\Auth\GoogleController;
+use App\Http\Controllers\SuperAdminController;
+use App\Http\Controllers\AdminController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -14,6 +16,16 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
+Route::get('/admin/dashboard', [AdminController::class, 'adminDashboard'])
+    ->name('admin.dashboard')
+    ->middleware(['auth', 'role:admin']);
+
+Route::get('/superadmin/dashboard', [SuperAdminController::class, 'superadminDashboard'])
+    ->name('superadmin.dashboard')
+    ->middleware(['auth', 'role:superadmin']);
+
+
+
 
 Route::get('/auth/google', [GoogleController::class, 'redirect'])->name('google.redirect');
 Route::get('/auth/google/callback', [GoogleController::class, 'callback'])->name('google.callback');
