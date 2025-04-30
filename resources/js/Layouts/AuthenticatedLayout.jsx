@@ -19,7 +19,8 @@ export default function AuthenticatedLayout({ header, children }) {
     const toggleSidebar = () => {
         setSidebarOpen(!isSidebarOpen);
     };
-    23;
+    console.log(auth?.user?.role);
+
     return (
         <div className="min-h-screen bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 dark:from-gray-900 dark:to-gray-800 p-3 lg:p-6 flex flex-col lg:flex-row gap-4 lg:gap-6 relative">
             {/* Mobile Header */}
@@ -47,7 +48,13 @@ export default function AuthenticatedLayout({ header, children }) {
 
                         <nav className="space-y-3 text-sm">
                             <NavItem
-                                href={route("dashboard")}
+                                href={
+                                    auth.user.role === "superadmin"
+                                        ? route("superadmin.dashboard")
+                                        : auth.user.role === "admin"
+                                        ? route("admin.dashboard")
+                                        : route("dashboard")
+                                }
                                 icon={<Home />}
                                 label="Dashboard"
                             />
@@ -68,7 +75,7 @@ export default function AuthenticatedLayout({ header, children }) {
                     {/* User Info (bottom) */}
                     <div className="flex items-center gap-2 px-2 py-2 rounded-lg bg-gray-100 dark:bg-gray-700">
                         <div className="hidden lg:flex w-7 h-7 rounded-full bg-indigo-500 text-white items-center justify-center font-bold">
-                            {/* {auth.user.name.charAt(0)} */}
+                            {auth.user.name.charAt(0)}
                         </div>
                         <Link
                             href={route("profile.edit")}
@@ -76,10 +83,11 @@ export default function AuthenticatedLayout({ header, children }) {
                             title="Edit Profile"
                         >
                             <div className="text-xs font-medium text-gray-800 dark:text-white truncate group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition duration-200">
-                                {/* {auth.user.name} */}
+                                {auth.user.name}
                             </div>
                             <div className="text-xs text-gray-500 dark:text-gray-300 group-hover:text-indigo-500 dark:group-hover:text-indigo-300 transition duration-200">
-                                Admin
+                                {auth.user.role.charAt(0).toUpperCase() +
+                                    auth.user.role.slice(1)}
                             </div>
                         </Link>
 

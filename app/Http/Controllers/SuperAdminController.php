@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 
 class SuperAdminController extends Controller
 {
-    public function superadminDashboard()
+    public function dashboard()
     {
         return Inertia::render('SuperAdmin/Dashboard'); 
     }

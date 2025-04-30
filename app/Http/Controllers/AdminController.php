@@ -7,7 +7,7 @@ use Inertia\Inertia;
 
 class AdminController extends Controller
 {
-    public function adminDashboard()
+    public function dashboard()
     {
         return Inertia::render('Admin/Dashboard'); 
     }

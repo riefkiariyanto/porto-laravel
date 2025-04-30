@@ -21,7 +21,7 @@ export default function Login({ status, canResetPassword }) {
             onFinish: () => reset("password"),
         });
     };
-
+    console.log(errors);
     return (
         <GuestLayout>
             <Head title="Log in" />

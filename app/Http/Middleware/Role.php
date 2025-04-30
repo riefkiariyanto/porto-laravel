@@ -15,11 +15,6 @@ class Role
      */
     public function handle(Request $request, Closure $next, string $role): Response
     {
-        if (!$request->user()) {
-            abort(403, 'Unauthorized.');
-        }
-
-        // Pastikan role cocok
         if ($request->user()->role !== $role) {
             abort(403, 'Unauthorized.');
         }
