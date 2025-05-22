@@ -12,7 +12,7 @@ import {
     X,
 } from "lucide-react";
 
-export default function AuthenticatedLayout({ header, children }) {
+export default function AuthenticatedLayout({ children }) {
     const { auth } = usePage().props;
     const [isSidebarOpen, setSidebarOpen] = useState(false);
 
@@ -73,19 +73,21 @@ export default function AuthenticatedLayout({ header, children }) {
                     </div>
 
                     {/* User Info (bottom) */}
+                    {/* User Info (bottom) */}
                     <div className="flex items-center gap-2 px-2 py-2 rounded-lg bg-gray-100 dark:bg-gray-700">
                         <div className="hidden lg:flex w-7 h-7 rounded-full bg-indigo-500 text-white items-center justify-center font-bold">
                             {auth.user.name.charAt(0)}
                         </div>
+
                         <Link
                             href={route("profile.edit")}
-                            className="flex-1 group cursor-pointer"
+                            className="flex-1 group cursor-pointer overflow-hidden"
                             title="Edit Profile"
                         >
-                            <div className="text-xs font-medium text-gray-800 dark:text-white truncate group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition duration-200">
+                            <div className="text-xs font-medium text-gray-800 dark:text-white truncate max-w-[120px] group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition duration-200">
                                 {auth.user.name}
                             </div>
-                            <div className="text-xs text-gray-500 dark:text-gray-300 group-hover:text-indigo-500 dark:group-hover:text-indigo-300 transition duration-200">
+                            <div className="text-xs text-gray-500 dark:text-gray-300 truncate max-w-[120px] group-hover:text-indigo-500 dark:group-hover:text-indigo-300 transition duration-200">
                                 {auth.user.role.charAt(0).toUpperCase() +
                                     auth.user.role.slice(1)}
                             </div>
@@ -106,14 +108,12 @@ export default function AuthenticatedLayout({ header, children }) {
             {/* Main Content Area */}
             <main className="flex-1 w-full space-y-4">
                 {/* Header di luar card */}
-                <div className="text-white text-xl lg:text-2xl font-bold">
+                {/* <div className="text-white text-xl lg:text-2xl font-bold">
                     {header}
-                </div>
+                </div> */}
 
                 {/* Card untuk konten */}
-                <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 lg:p-8">
-                    {children}
-                </div>
+                <div>{children}</div>
             </main>
         </div>
     );

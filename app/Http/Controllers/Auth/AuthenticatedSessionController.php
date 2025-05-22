@@ -36,8 +36,8 @@ class AuthenticatedSessionController extends Controller
     
         $url = match ($role) {
             'superadmin' => 'superadmin/dashboard',
-            'admin'      => 'admin/dashboard',
-            default      => 'dashboard',
+            // 'admin'      => 'admin/dashboard',
+            default      => '',
         };
     
         return redirect()->intended($url);

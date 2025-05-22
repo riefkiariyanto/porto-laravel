@@ -7,8 +7,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
-use Laravel\Sanctum\HasApiTokens; 
-use Illuminate\Notifications\Notifiable;
 
 class AuthController extends Controller
 {

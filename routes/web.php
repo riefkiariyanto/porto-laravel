@@ -4,6 +4,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\Auth\GoogleController;
+use App\Http\Controllers\SuperAdminController;
 
 require __DIR__.'/admin.php';
 require __DIR__.'/superadmin.php';
@@ -23,6 +24,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('dashboard');
 });
 
+//superadmin function
+Route::delete('/superadmin/users/{id}', [SuperAdminController::class, 'destroy']);
+Route::patch('/superadmin/users/{user}', [SuperAdminController::class, 'update'])->name('superadmin.users.update');
+
+
+
+// edit profile
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
