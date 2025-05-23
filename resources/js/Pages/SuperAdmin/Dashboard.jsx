@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import Modal from "@/Components/Modal";
+import { router } from "@inertiajs/react";
+import SupAdminLayout from "./SupAdminLayout";
 import {
     PencilSquareIcon,
     TrashIcon,
@@ -10,7 +11,6 @@ import {
     UsersIcon,
     TableCellsIcon,
 } from "@heroicons/react/24/outline";
-import { router } from "@inertiajs/react";
 
 export default function Dashboard({ users }) {
     const [editUser, setEditUser] = useState(null);
@@ -42,7 +42,7 @@ export default function Dashboard({ users }) {
     };
 
     return (
-        <AuthenticatedLayout>
+        <SupAdminLayout>
             <div className="px-4 sm:px-6 lg:px-1 space-y-4">
                 {/* Welcome Box */}
                 <div className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-2xl p-6 shadow-md text-white">
@@ -291,6 +291,6 @@ export default function Dashboard({ users }) {
                     </div>
                 </Modal>
             </div>
-        </AuthenticatedLayout>
+        </SupAdminLayout>
     );
 }

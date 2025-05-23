@@ -1,9 +1,9 @@
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
+import AdminLayout from "./AdminLayout";
 import { Head } from "@inertiajs/react";
 import { CheckCircleIcon } from "@heroicons/react/24/outline";
 export default function Dashboard() {
     return (
-        <AuthenticatedLayout
+        <AdminLayout
             header={
                 <h2 className="text-xl font-bold leading-tight text-gray-800 dark:text-gray-200">
                     Dashboard
@@ -29,6 +29,6 @@ export default function Dashboard() {
                     </div>
                 </div>
             </div>
-        </AuthenticatedLayout>
+        </AdminLayout>
     );
 }

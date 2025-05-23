@@ -7,6 +7,7 @@ use Inertia\Inertia;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
+use App\Models\SignInMethod;
 
 class SuperAdminController extends Controller
 {
@@ -16,6 +17,8 @@ class SuperAdminController extends Controller
             'users' => User::all()
         ]);
     }
+    
+       
 
    public function update(Request $request, User $user)
     {
@@ -47,5 +50,24 @@ class SuperAdminController extends Controller
         $user->delete();
 
        return redirect()->back()->with('success', 'User updated successfully');
+    }
+
+    public function signMethods()
+    {
+        $methods = SignInMethod::select('id', 'method', 'enabled')->get();
+
+        return Inertia::render('SuperAdmin/SignMethods', [
+            'methods' => $methods,
+        ]);
+    }
+
+       public function updateSignMethod(Request $request, SignInMethod $signMethod)
+    {
+        $validated = $request->validate([
+            'enabled' => 'required|boolean',
+        ]);
+
+        $signMethod->update(['enabled' => $validated['enabled']]);
+        return redirect()->route('superadmin.sign-methods');
     }
 }

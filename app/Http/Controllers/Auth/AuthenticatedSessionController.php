@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Models\SignInMethod;
 use Inertia\Response;
 
 class AuthenticatedSessionController extends Controller
@@ -18,9 +19,13 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): Response
     {
+        $googleEnabled = SignInMethod::where('method', 'like', '%google%')->value('enabled');
+
         return Inertia::render('Auth/Login', [
             'canResetPassword' => Route::has('password.request'),
             'status' => session('status'),
+            'googleEnabled' => $googleEnabled,
+
         ]);
     }
 
@@ -31,7 +36,6 @@ class AuthenticatedSessionController extends Controller
     { 
         $request->authenticate();
         $request->session()->regenerate();
-    
         $role = $request->user()->role;
     
         $url = match ($role) {
